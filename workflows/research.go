@@ -8,7 +8,7 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
-// DataSource represents a data source from the request.
+// DataSource represents an external data provider
 type DataSource struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -17,10 +17,10 @@ type DataSource struct {
 
 // ResearchWorkflowInput is the input for the research workflow.
 type ResearchWorkflowInput struct {
-	DataSources   []DataSource `json:"dataSources"`
 	Prompt        string       `json:"prompt"`
 	RiskTolerance string       `json:"riskTolerance"`
 	MaxBudget     string       `json:"maxBudget"`
+	DataSources   []DataSource `json:"dataSources"`
 }
 
 // ResearchWorkflowOutput is the output from the research workflow.
@@ -45,7 +45,12 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 	}
 
 	// Step 2: Perform research
-	jobConfig := &activities.ResearchInput{Query: input.Prompt}
+	jobConfig := &activities.ResearchInput{
+		Prompt:        input.Prompt,
+		RiskTolerance: input.RiskTolerance,
+		MaxBudget:     input.MaxBudget,
+		DataSources:   convertDataSources(input.DataSources),
+	}
 
 	var result activities.ResearchOutput
 	err = workflowext.ExecuteOptional(ctx, "Research", jobConfig).Get(ctx, &result)
@@ -56,4 +61,12 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 	return &ResearchWorkflowOutput{
 		Research: result.Research,
 	}, nil
+}
+
+func convertDataSources(ds []DataSource) []activities.DataSource {
+	res := make([]activities.DataSource, len(ds))
+	for i, d := range ds {
+		res[i] = activities.DataSource{Name: d.Name, Description: d.Description, APIKey: d.APIKey}
+	}
+	return res
 }
