@@ -2,6 +2,7 @@ package api
 
 import (
 	"embed"
+	"encoding/base64"
 	"encoding/json"
 	"io"
 	"log"
@@ -10,6 +11,9 @@ import (
 
 //go:embed mock/*.json
 var mockData embed.FS
+
+//go:embed report.mdx
+var reportMDX []byte
 
 var validSources = map[string]string{
 	"twitter":             "mock/twitter.json",
@@ -38,6 +42,7 @@ func (s *Server) Run() error {
 	mux.HandleFunc("GET /health", s.handleHealth)
 	mux.HandleFunc("GET /data/{name}", s.handleData)
 	mux.HandleFunc("GET /sources", s.handleSources)
+	mux.HandleFunc("POST /research", s.handleResearch)
 
 	log.Printf("API server starting on %s", s.addr)
 	return http.ListenAndServe(s.addr, mux)
@@ -85,5 +90,14 @@ func (s *Server) handleSources(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"sources": sources,
 		"usage":   "GET /data/{source_name}",
+	})
+}
+
+func (s *Server) handleResearch(w http.ResponseWriter, r *http.Request) {
+	encoded := base64.StdEncoding.EncodeToString(reportMDX)
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"research": encoded,
 	})
 }
