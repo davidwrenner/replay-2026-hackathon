@@ -51,6 +51,7 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 		MaxBudget:     input.MaxBudget,
 		DataSources:   convertDataSources(input.DataSources),
 	}
+  // jobConfig = nil
 
 	var result activities.ResearchOutput
 	err = workflowext.ExecuteOptional(ctx, "Research", jobConfig).Get(ctx, &result)
