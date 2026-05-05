@@ -1,12 +1,21 @@
-.PHONY: api test-api research ui ui-install help
+
+.PHONY: api test-api research ui ui-install temporal help
 
 # Default target
 help:
 	@echo "Available commands:"
+	@echo "  make temporal  - Start the Temporal dev server"
 	@echo "  make api        - Start the API server on :8080"
 	@echo "  make ui         - Install (if needed) and start the frontend dev server on :5173"
 	@echo "  make test-api   - Test the API with a sample request"
 	@echo "  make research   - Get research report (decoded)"
+	@echo "  make api       - Start the API server on :8080"
+	@echo "  make test-api  - Test the API with a sample request"
+	@echo "  make research  - Get research report (decoded)"
+
+# Start Temporal dev server
+temporal:
+	temporal server start-dev
 
 # Start the API server
 api:
