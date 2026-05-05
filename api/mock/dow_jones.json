@@ -1,0 +1,72 @@
+{
+  "source": "dow_jones",
+  "description": "Dow Jones API - news, data, and market intelligence",
+  "data": {
+    "newswires": [
+      {
+        "id": "dj_001",
+        "headline": "MARKETS: S&P 500 Hits Record High on Strong Jobs Data",
+        "timestamp": "2026-05-05T14:32:00Z",
+        "category": "markets",
+        "priority": "flash",
+        "tickers": ["SPY", "SPX"]
+      },
+      {
+        "id": "dj_002",
+        "headline": "EARNINGS: Amazon Beats Q1 Estimates, AWS Growth Accelerates",
+        "timestamp": "2026-05-05T12:15:00Z",
+        "category": "earnings",
+        "priority": "high",
+        "tickers": ["AMZN"]
+      },
+      {
+        "id": "dj_003",
+        "headline": "M&A: Cisco to Acquire Cybersecurity Firm for $8.5B",
+        "timestamp": "2026-05-05T10:45:00Z",
+        "category": "deals",
+        "priority": "high",
+        "tickers": ["CSCO"]
+      },
+      {
+        "id": "dj_004",
+        "headline": "COMMODITIES: Gold Retreats as Dollar Strengthens",
+        "timestamp": "2026-05-05T09:30:00Z",
+        "category": "commodities",
+        "priority": "medium",
+        "tickers": ["GLD", "GC"]
+      }
+    ],
+    "factiva_insights": {
+      "trending_companies": [
+        {"name": "NVIDIA", "mention_count_24h": 4521, "sentiment": 0.72},
+        {"name": "Tesla", "mention_count_24h": 3890, "sentiment": 0.45},
+        {"name": "Apple", "mention_count_24h": 3245, "sentiment": 0.68},
+        {"name": "Microsoft", "mention_count_24h": 2987, "sentiment": 0.71}
+      ],
+      "trending_topics": [
+        {"topic": "Artificial Intelligence", "articles_24h": 1245, "trend": "up"},
+        {"topic": "Interest Rates", "articles_24h": 892, "trend": "stable"},
+        {"topic": "Electric Vehicles", "articles_24h": 756, "trend": "down"},
+        {"topic": "Cryptocurrency", "articles_24h": 534, "trend": "up"}
+      ]
+    },
+    "risk_alerts": [
+      {
+        "company": "Boeing",
+        "ticker": "BA",
+        "risk_type": "regulatory",
+        "severity": "high",
+        "description": "FAA announces expanded investigation into manufacturing quality controls",
+        "timestamp": "2026-05-05T08:00:00Z"
+      },
+      {
+        "company": "Intel",
+        "ticker": "INTC",
+        "risk_type": "competitive",
+        "severity": "medium",
+        "description": "Market share losses in data center segment continue as AMD gains ground",
+        "timestamp": "2026-05-04T16:30:00Z"
+      }
+    ]
+  }
+}

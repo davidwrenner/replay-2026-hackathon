@@ -1,0 +1,70 @@
+{
+  "source": "lexisnexis",
+  "description": "LexisNexis API - legal, regulatory, and business intelligence",
+  "data": {
+    "legal_filings": [
+      {
+        "case_id": "ln_2026_001",
+        "title": "FTC v. Microsoft Corporation",
+        "court": "US District Court, Northern District of California",
+        "filed_date": "2026-05-03",
+        "case_type": "antitrust",
+        "status": "pending",
+        "companies_involved": ["MSFT"],
+        "summary": "Federal Trade Commission challenges Microsoft's acquisition of AI startup, citing competition concerns in the generative AI market."
+      },
+      {
+        "case_id": "ln_2026_002",
+        "title": "Securities Class Action: Tesla Inc.",
+        "court": "US District Court, District of Delaware",
+        "filed_date": "2026-05-01",
+        "case_type": "securities_fraud",
+        "status": "pending",
+        "companies_involved": ["TSLA"],
+        "summary": "Shareholders allege misleading statements regarding Full Self-Driving capabilities and robotaxi timeline."
+      },
+      {
+        "case_id": "ln_2026_003",
+        "title": "EPA v. ExxonMobil Corporation",
+        "court": "US Court of Appeals, Fifth Circuit",
+        "filed_date": "2026-04-28",
+        "case_type": "environmental",
+        "status": "appeal",
+        "companies_involved": ["XOM"],
+        "summary": "Environmental Protection Agency appeals lower court ruling on emissions reporting requirements."
+      }
+    ],
+    "regulatory_updates": [
+      {
+        "agency": "SEC",
+        "rule": "Climate Disclosure Requirements",
+        "status": "final_rule",
+        "effective_date": "2026-06-01",
+        "affected_sectors": ["all_public_companies"],
+        "summary": "New mandatory climate risk disclosure requirements for public companies."
+      },
+      {
+        "agency": "FDA",
+        "rule": "AI Medical Device Approval Pathway",
+        "status": "proposed",
+        "comment_deadline": "2026-07-15",
+        "affected_sectors": ["healthcare", "technology"],
+        "summary": "Streamlined approval process for AI-powered diagnostic and therapeutic devices."
+      }
+    ],
+    "corporate_records": [
+      {
+        "company": "OpenAI",
+        "event": "corporate_restructure",
+        "date": "2026-05-02",
+        "details": "Conversion from capped-profit to traditional C-corp structure completed."
+      },
+      {
+        "company": "SpaceX",
+        "event": "tender_offer",
+        "date": "2026-04-30",
+        "details": "Employee stock tender offer at $250/share, valuing company at $350B."
+      }
+    ]
+  }
+}

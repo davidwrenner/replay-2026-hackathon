@@ -1,7 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"os"
+
+	"github.com/davidwrenner/replay-2026-hackathon/api"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	addr := os.Getenv("API_ADDR")
+	if addr == "" {
+		addr = ":8080"
+	}
+
+	server := api.NewServer(addr)
+	if err := server.Run(); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }

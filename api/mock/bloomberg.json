@@ -1,0 +1,39 @@
+{
+  "source": "bloomberg",
+  "description": "Bloomberg Terminal - real-time financial data and analytics",
+  "data": {
+    "market_summary": {
+      "timestamp": "2026-05-05T15:30:00Z",
+      "indices": [
+        {"symbol": "SPX", "name": "S&P 500", "price": 5284.32, "change": 0.45, "change_pct": 0.0085},
+        {"symbol": "INDU", "name": "Dow Jones", "price": 39876.54, "change": 156.23, "change_pct": 0.0039},
+        {"symbol": "CCMP", "name": "Nasdaq", "price": 16543.21, "change": -42.18, "change_pct": -0.0025},
+        {"symbol": "RTY", "name": "Russell 2000", "price": 2087.65, "change": 12.34, "change_pct": 0.0059}
+      ]
+    },
+    "fx_rates": [
+      {"pair": "EUR/USD", "rate": 1.0876, "change": 0.0023},
+      {"pair": "GBP/USD", "rate": 1.2654, "change": -0.0015},
+      {"pair": "USD/JPY", "rate": 152.34, "change": 0.45},
+      {"pair": "USD/CHF", "rate": 0.9012, "change": -0.0034}
+    ],
+    "commodities": [
+      {"symbol": "CL1", "name": "WTI Crude", "price": 82.45, "change": 1.23},
+      {"symbol": "GC1", "name": "Gold", "price": 2345.60, "change": -8.90},
+      {"symbol": "SI1", "name": "Silver", "price": 27.85, "change": 0.15},
+      {"symbol": "NG1", "name": "Natural Gas", "price": 2.34, "change": -0.08}
+    ],
+    "top_movers": {
+      "gainers": [
+        {"ticker": "SMCI", "name": "Super Micro Computer", "price": 892.45, "change_pct": 12.5},
+        {"ticker": "MSTR", "name": "MicroStrategy", "price": 1654.32, "change_pct": 8.7},
+        {"ticker": "PLTR", "name": "Palantir", "price": 24.56, "change_pct": 6.2}
+      ],
+      "losers": [
+        {"ticker": "PARA", "name": "Paramount Global", "price": 11.23, "change_pct": -8.9},
+        {"ticker": "SNAP", "name": "Snap Inc", "price": 10.45, "change_pct": -7.2},
+        {"ticker": "LYFT", "name": "Lyft", "price": 14.32, "change_pct": -5.8}
+      ]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "source": "refinitiv",
+  "description": "Refinitiv API - financial data, analytics, and trading insights",
+  "data": {
+    "market_data": {
+      "timestamp": "2026-05-05T15:30:00Z",
+      "equities": [
+        {"ric": "AAPL.O", "name": "Apple Inc", "last": 189.45, "bid": 189.42, "ask": 189.48, "volume": 52340000, "vwap": 188.92},
+        {"ric": "MSFT.O", "name": "Microsoft Corp", "last": 425.67, "bid": 425.60, "ask": 425.72, "volume": 18900000, "vwap": 426.15},
+        {"ric": "NVDA.O", "name": "NVIDIA Corp", "last": 892.34, "bid": 892.20, "ask": 892.45, "volume": 45600000, "vwap": 889.50},
+        {"ric": "GOOGL.O", "name": "Alphabet Inc", "last": 172.15, "bid": 172.10, "ask": 172.18, "volume": 21200000, "vwap": 171.85}
+      ]
+    },
+    "fundamentals": [
+      {
+        "ric": "AAPL.O",
+        "pe_ratio": 29.5,
+        "forward_pe": 26.8,
+        "pb_ratio": 45.2,
+        "dividend_yield": 0.52,
+        "roe": 147.5,
+        "debt_to_equity": 1.76,
+        "revenue_growth_yoy": 8.2,
+        "earnings_growth_yoy": 12.4
+      },
+      {
+        "ric": "NVDA.O",
+        "pe_ratio": 65.8,
+        "forward_pe": 42.3,
+        "pb_ratio": 52.1,
+        "dividend_yield": 0.02,
+        "roe": 89.2,
+        "debt_to_equity": 0.41,
+        "revenue_growth_yoy": 122.5,
+        "earnings_growth_yoy": 168.3
+      }
+    ],
+    "institutional_ownership": [
+      {"ric": "AAPL.O", "institutional_pct": 61.2, "top_holders": ["Vanguard", "BlackRock", "Berkshire Hathaway", "State Street"]},
+      {"ric": "NVDA.O", "institutional_pct": 68.5, "top_holders": ["Vanguard", "BlackRock", "FMR", "State Street"]}
+    ],
+    "analyst_estimates": [
+      {"ric": "AAPL.O", "consensus": "buy", "target_mean": 215.50, "target_high": 250.00, "target_low": 175.00, "analyst_count": 42},
+      {"ric": "NVDA.O", "consensus": "strong_buy", "target_mean": 1050.00, "target_high": 1400.00, "target_low": 700.00, "analyst_count": 48}
+    ],
+    "esg_scores": [
+      {"ric": "AAPL.O", "overall": 72, "environmental": 68, "social": 75, "governance": 74},
+      {"ric": "MSFT.O", "overall": 78, "environmental": 82, "social": 76, "governance": 77}
+    ]
+  }
+}
