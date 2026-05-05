@@ -1,0 +1,74 @@
+{
+  "source": "youtube",
+  "description": "YouTube API - financial content, influencer sentiment, and trending videos",
+  "data": {
+    "trending_finance": [
+      {
+        "video_id": "yt_001",
+        "title": "NVIDIA Stock Analysis: Is $1000 Coming?",
+        "channel": "Meet Kevin",
+        "subscribers": 2100000,
+        "views": 524000,
+        "published": "2026-05-05T08:00:00Z",
+        "duration": "PT24M32S",
+        "tickers_mentioned": ["NVDA", "AMD", "INTC"],
+        "sentiment": "bullish"
+      },
+      {
+        "video_id": "yt_002",
+        "title": "The Fed Just Changed EVERYTHING - May 2026 Update",
+        "channel": "Graham Stephan",
+        "subscribers": 4500000,
+        "views": 892000,
+        "published": "2026-05-04T15:00:00Z",
+        "duration": "PT18M45S",
+        "tickers_mentioned": ["SPY", "QQQ", "TLT"],
+        "sentiment": "neutral"
+      },
+      {
+        "video_id": "yt_003",
+        "title": "I'm Selling ALL My Tesla Stock - Here's Why",
+        "channel": "Andrei Jikh",
+        "subscribers": 2300000,
+        "views": 1250000,
+        "published": "2026-05-04T12:00:00Z",
+        "duration": "PT21M18S",
+        "tickers_mentioned": ["TSLA"],
+        "sentiment": "bearish"
+      },
+      {
+        "video_id": "yt_004",
+        "title": "Top 5 Dividend Stocks for 2026",
+        "channel": "Dividend Bull",
+        "subscribers": 890000,
+        "views": 156000,
+        "published": "2026-05-03T10:00:00Z",
+        "duration": "PT15M22S",
+        "tickers_mentioned": ["JNJ", "PG", "KO", "O", "SCHD"],
+        "sentiment": "bullish"
+      }
+    ],
+    "influencer_sentiment": [
+      {"channel": "Meet Kevin", "overall_sentiment": "bullish", "top_picks": ["NVDA", "PLTR", "SOFI"]},
+      {"channel": "Graham Stephan", "overall_sentiment": "neutral", "top_picks": ["VOO", "VTI", "SCHD"]},
+      {"channel": "Andrei Jikh", "overall_sentiment": "cautious", "top_picks": ["GOOGL", "MSFT", "BTC"]},
+      {"channel": "Financial Education", "overall_sentiment": "bullish", "top_picks": ["AAPL", "META", "AMZN"]}
+    ],
+    "comment_analysis": {
+      "most_discussed_tickers": [
+        {"ticker": "NVDA", "mention_count": 12500, "avg_sentiment": 0.75},
+        {"ticker": "TSLA", "mention_count": 9800, "avg_sentiment": 0.42},
+        {"ticker": "GME", "mention_count": 4500, "avg_sentiment": 0.68},
+        {"ticker": "SPY", "mention_count": 3200, "avg_sentiment": 0.55}
+      ]
+    },
+    "live_streams": [
+      {
+        "title": "LIVE: Market Open Watch - May 5th",
+        "channel": "Stock Markets with Bruce",
+        "concurrent_viewers": 8500,
+        "status": "live"
+      }
+    ]
+  }
+}

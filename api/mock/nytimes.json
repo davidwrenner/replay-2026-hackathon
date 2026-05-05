@@ -1,0 +1,59 @@
+{
+  "source": "nytimes",
+  "description": "New York Times subscription - financial and market news",
+  "data": {
+    "articles": [
+      {
+        "id": "nyt_001",
+        "headline": "Fed Signals Potential Rate Cut Amid Cooling Inflation",
+        "section": "Business",
+        "author": "Jeanna Smialek",
+        "published": "2026-05-05T08:30:00Z",
+        "summary": "Federal Reserve officials indicated they may begin cutting interest rates as inflation shows signs of returning to the 2% target.",
+        "sentiment": "bullish",
+        "tickers_mentioned": ["SPY", "TLT", "IEF"]
+      },
+      {
+        "id": "nyt_002",
+        "headline": "Tech Giants Report Mixed Earnings as AI Spending Surges",
+        "section": "Technology",
+        "author": "Karen Weise",
+        "published": "2026-05-05T06:15:00Z",
+        "summary": "Major technology companies revealed substantial investments in artificial intelligence infrastructure, raising questions about near-term profitability.",
+        "sentiment": "neutral",
+        "tickers_mentioned": ["MSFT", "GOOGL", "AMZN", "META"]
+      },
+      {
+        "id": "nyt_003",
+        "headline": "Oil Prices Surge on Middle East Supply Concerns",
+        "section": "Business",
+        "author": "Stanley Reed",
+        "published": "2026-05-04T19:45:00Z",
+        "summary": "Crude oil futures jumped 4% as geopolitical tensions threaten shipping routes through the Red Sea.",
+        "sentiment": "bearish",
+        "tickers_mentioned": ["XOM", "CVX", "USO", "XLE"]
+      },
+      {
+        "id": "nyt_004",
+        "headline": "Housing Market Shows Signs of Recovery as Mortgage Rates Ease",
+        "section": "Real Estate",
+        "author": "Conor Dougherty",
+        "published": "2026-05-04T14:20:00Z",
+        "summary": "Home sales increased for the third consecutive month as borrowing costs declined from recent highs.",
+        "sentiment": "bullish",
+        "tickers_mentioned": ["XHB", "LEN", "DHI", "TOL"]
+      },
+      {
+        "id": "nyt_005",
+        "headline": "Retail Sales Disappoint, Raising Recession Concerns",
+        "section": "Business",
+        "author": "Ben Casselman",
+        "published": "2026-05-04T10:00:00Z",
+        "summary": "Consumer spending fell short of expectations in April, suggesting households are becoming more cautious.",
+        "sentiment": "bearish",
+        "tickers_mentioned": ["XRT", "WMT", "TGT", "COST"]
+      }
+    ],
+    "trending_topics": ["Federal Reserve", "AI Investment", "Oil Prices", "Housing Market", "Consumer Spending"]
+  }
+}

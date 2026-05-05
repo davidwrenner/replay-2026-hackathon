@@ -1,0 +1,50 @@
+{
+  "source": "reddit",
+  "description": "Reddit - retail investor sentiment from r/wallstreetbets, r/stocks, r/investing",
+  "data": {
+    "wsb_sentiment": {
+      "subreddit": "wallstreetbets",
+      "subscribers": 15200000,
+      "active_users": 45000,
+      "top_tickers": [
+        {"ticker": "GME", "mentions": 2340, "sentiment": 0.82, "position_bias": "long"},
+        {"ticker": "AMC", "mentions": 1890, "sentiment": 0.71, "position_bias": "long"},
+        {"ticker": "NVDA", "mentions": 1650, "sentiment": 0.88, "position_bias": "long"},
+        {"ticker": "TSLA", "mentions": 1420, "sentiment": 0.55, "position_bias": "mixed"},
+        {"ticker": "SPY", "mentions": 1180, "sentiment": 0.45, "position_bias": "short"}
+      ],
+      "trending_posts": [
+        {
+          "title": "NVDA $1000 EOY is not a meme",
+          "upvotes": 12500,
+          "comments": 2340,
+          "awards": 45,
+          "flair": "DD"
+        },
+        {
+          "title": "Lost $50k on SPY puts, time to double down",
+          "upvotes": 8900,
+          "comments": 1560,
+          "awards": 23,
+          "flair": "Loss"
+        }
+      ]
+    },
+    "stocks_sentiment": {
+      "subreddit": "stocks",
+      "top_discussed": [
+        {"ticker": "AAPL", "mentions": 890, "sentiment": 0.72},
+        {"ticker": "MSFT", "mentions": 756, "sentiment": 0.78},
+        {"ticker": "GOOGL", "mentions": 612, "sentiment": 0.65},
+        {"ticker": "AMZN", "mentions": 534, "sentiment": 0.70}
+      ]
+    },
+    "yolo_tracker": {
+      "total_yolo_posts_24h": 127,
+      "avg_position_size": 45000,
+      "most_common_strategy": "weekly_calls",
+      "biggest_gain": {"ticker": "SMCI", "return_pct": 450, "initial": 10000},
+      "biggest_loss": {"ticker": "PARA", "return_pct": -92, "initial": 75000}
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "source": "wall_street_journal",
+  "description": "Wall Street Journal API - premium financial news and analysis",
+  "data": {
+    "articles": [
+      {
+        "id": "wsj_001",
+        "headline": "Tech Giants Face Antitrust Scrutiny as AI Race Intensifies",
+        "section": "Technology",
+        "author": "Emily Glazer",
+        "published": "2026-05-05T09:00:00Z",
+        "summary": "Federal regulators are examining whether major tech companies are using their dominance in cloud computing to gain unfair advantages in artificial intelligence.",
+        "premium": true,
+        "tickers_mentioned": ["GOOGL", "MSFT", "AMZN", "META"]
+      },
+      {
+        "id": "wsj_002",
+        "headline": "Private Equity Firms Amass Record Cash for Buyouts",
+        "section": "Finance",
+        "author": "Miriam Gottfried",
+        "published": "2026-05-05T07:30:00Z",
+        "summary": "Buyout firms have raised over $400 billion in dry powder, signaling a potential wave of leveraged acquisitions as interest rates stabilize.",
+        "premium": true,
+        "tickers_mentioned": ["BX", "KKR", "APO", "CG"]
+      },
+      {
+        "id": "wsj_003",
+        "headline": "Oil Majors Pivot Back to Fossil Fuels Amid Green Energy Struggles",
+        "section": "Energy",
+        "author": "Collin Eaton",
+        "published": "2026-05-04T18:45:00Z",
+        "summary": "Shell and BP are scaling back renewable energy investments after disappointing returns, refocusing on core oil and gas operations.",
+        "premium": false,
+        "tickers_mentioned": ["SHEL", "BP", "XOM", "CVX"]
+      },
+      {
+        "id": "wsj_004",
+        "headline": "Commercial Real Estate Defaults Hit 15-Year High",
+        "section": "Real Estate",
+        "author": "Konrad Putzier",
+        "published": "2026-05-04T14:20:00Z",
+        "summary": "Office building loan defaults continue to surge as remote work trends persist, putting pressure on regional banks with heavy CRE exposure.",
+        "premium": true,
+        "tickers_mentioned": ["VNO", "SLG", "BXP", "KRE"]
+      }
+    ],
+    "market_data": {
+      "fear_greed_index": 62,
+      "market_sentiment": "cautiously_optimistic",
+      "sector_rotation": {
+        "inflows": ["technology", "healthcare", "industrials"],
+        "outflows": ["real_estate", "utilities", "consumer_staples"]
+      }
+    }
+  }
+}
