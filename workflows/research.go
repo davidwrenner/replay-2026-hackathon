@@ -8,9 +8,19 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
+// DataSource represents an external data provider
+type DataSource struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	APIKey      string `json:"apiKey"`
+}
+
 // ResearchWorkflowInput is the input for the research workflow.
 type ResearchWorkflowInput struct {
-	Query string `json:"query"`
+	Prompt        string       `json:"prompt"`
+	RiskTolerance string       `json:"riskTolerance"`
+	MaxBudget     string       `json:"maxBudget"`
+	DataSources   []DataSource `json:"dataSources"`
 }
 
 // ResearchWorkflowOutput is the output from the research workflow.
@@ -25,11 +35,26 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 	}
 	ctx = workflow.WithActivityOptions(ctx, ao)
 
-	jobConfig := &activities.ResearchInput{Query: input.Query}
-	jobConfig = nil
+	// Step 1: Check for prompt injection
+	err := workflow.ExecuteActivity(ctx, "CheckInjection", activities.InjectionCheckInput{
+		Prompt:        input.Prompt,
+		RiskTolerance: input.RiskTolerance,
+	}).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	// Step 2: Perform research
+	jobConfig := &activities.ResearchInput{
+		Prompt:        input.Prompt,
+		RiskTolerance: input.RiskTolerance,
+		MaxBudget:     input.MaxBudget,
+		DataSources:   convertDataSources(input.DataSources),
+	}
+  // jobConfig = nil
 
 	var result activities.ResearchOutput
-	err := workflowext.ExecuteOptional(ctx, "Research", jobConfig).Get(ctx, &result)
+	err = workflowext.ExecuteOptional(ctx, "Research", jobConfig).Get(ctx, &result)
 	if err != nil {
 		return nil, err
 	}
@@ -37,4 +62,12 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 	return &ResearchWorkflowOutput{
 		Research: result.Research,
 	}, nil
+}
+
+func convertDataSources(ds []DataSource) []activities.DataSource {
+	res := make([]activities.DataSource, len(ds))
+	for i, d := range ds {
+		res[i] = activities.DataSource{Name: d.Name, Description: d.Description, APIKey: d.APIKey}
+	}
+	return res
 }
