@@ -48,11 +48,9 @@ func main() {
 	w.RegisterActivity(workflowext.NoOpActivity)
 
 	// Start worker in background
-	go func() {
-		if err := w.Run(worker.InterruptCh()); err != nil {
-			log.Fatalf("Failed to start worker: %v", err)
-		}
-	}()
+	if err := w.Start(); err != nil {
+		log.Fatalf("Failed to start worker: %v", err)
+	}
 
 	log.Printf("Temporal worker started on task queue: %s", TaskQueue)
 
