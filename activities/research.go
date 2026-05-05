@@ -36,51 +36,61 @@ type Activities struct {
 
 // Bloomberg fetches data from Bloomberg API.
 func (a *Activities) Bloomberg(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // DowJones fetches data from Dow Jones API.
 func (a *Activities) DowJones(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // LexisNexis fetches data from LexisNexis API.
 func (a *Activities) LexisNexis(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // NYTimes fetches data from New York Times API.
 func (a *Activities) NYTimes(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // Polymarket fetches data from Polymarket API.
 func (a *Activities) Polymarket(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // Reddit fetches data from Reddit API.
 func (a *Activities) Reddit(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // Refinitiv fetches data from Refinitiv API.
 func (a *Activities) Refinitiv(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // Twitter fetches data from Twitter API.
 func (a *Activities) Twitter(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // WallStreetJournal fetches data from Wall Street Journal API.
 func (a *Activities) WallStreetJournal(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
 // YouTube fetches data from YouTube API.
 func (a *Activities) YouTube(ctx context.Context, input ResearchInput) error {
+	time.Sleep(300 * time.Millisecond)
 	return nil
 }
 
