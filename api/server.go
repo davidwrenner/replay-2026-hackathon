@@ -7,8 +7,10 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
+	"github.com/davidwrenner/replay-2026-hackathon/activities"
 	"github.com/davidwrenner/replay-2026-hackathon/workflows"
 	"go.temporal.io/sdk/client"
 )
@@ -139,11 +141,30 @@ func (s *Server) handleResearch(w http.ResponseWriter, r *http.Request) {
 		dataSources[i] = workflows.DataSource{Name: ds.Name}
 	}
 
-	input := workflows.ResearchWorkflowInput{
-		DataSources:   dataSources,
+	// Build base job config
+	jobConfig := &activities.ResearchInput{
 		Prompt:        req.Prompt,
 		RiskTolerance: req.RiskTolerance,
 		MaxBudget:     req.MaxBudget,
+		DataSources:   convertDataSources(req.DataSources),
+	}
+
+	input := workflows.ResearchWorkflowInput{
+		DataSources:             dataSources,
+		Prompt:                  req.Prompt,
+		RiskTolerance:           req.RiskTolerance,
+		MaxBudget:               req.MaxBudget,
+		BloombergConfig:         configIf(hasDataSource(req.DataSources, "bloomberg"), jobConfig),
+		DowJonesConfig:          configIf(hasDataSource(req.DataSources, "dow_jones"), jobConfig),
+		LexisNexisConfig:        configIf(hasDataSource(req.DataSources, "lexisnexis"), jobConfig),
+		NYTimesConfig:           configIf(hasDataSource(req.DataSources, "nytimes"), jobConfig),
+		PolymarketConfig:        configIf(hasDataSource(req.DataSources, "polymarket"), jobConfig),
+		RedditConfig:            configIf(hasDataSource(req.DataSources, "reddit"), jobConfig),
+		RefinitivConfig:         configIf(hasDataSource(req.DataSources, "refinitiv"), jobConfig),
+		TwitterConfig:           configIf(hasDataSource(req.DataSources, "twitter"), jobConfig),
+		WallStreetJournalConfig: configIf(hasDataSource(req.DataSources, "wall_street_journal"), jobConfig),
+		YouTubeConfig:           configIf(hasDataSource(req.DataSources, "youtube"), jobConfig),
+		ResearchConfig:          jobConfig,
 	}
 
 	workflowOptions := client.StartWorkflowOptions{
@@ -170,4 +191,28 @@ func (s *Server) handleResearch(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]string{
 		"research": result.Research,
 	})
+}
+
+func hasDataSource(ds []DataSource, name string) bool {
+	for _, d := range ds {
+		if strings.EqualFold(d.Name, name) {
+			return true
+		}
+	}
+	return false
+}
+
+func configIf(enabled bool, cfg *activities.ResearchInput) *activities.ResearchInput {
+	if enabled {
+		return cfg
+	}
+	return nil
+}
+
+func convertDataSources(ds []DataSource) []activities.DataSource {
+	res := make([]activities.DataSource, len(ds))
+	for i, d := range ds {
+		res[i] = activities.DataSource{Name: d.Name}
+	}
+	return res
 }
