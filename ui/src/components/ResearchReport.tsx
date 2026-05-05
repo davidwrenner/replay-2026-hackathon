@@ -103,6 +103,7 @@ function parseMdx(mdx: string): ParsedBlock[] {
     }
 
     // Headings
+    if (line.startsWith("#### ")) { blocks.push({ type: "h3", content: line.slice(5) }); i++; continue; }
     if (line.startsWith("### ")) { blocks.push({ type: "h3", content: line.slice(4) }); i++; continue; }
     if (line.startsWith("## "))  { blocks.push({ type: "h2", content: line.slice(3) }); i++; continue; }
     if (line.startsWith("# "))   { blocks.push({ type: "h1", content: line.slice(2) }); i++; continue; }
@@ -157,12 +158,18 @@ function parseMdx(mdx: string): ParsedBlock[] {
 
     // Paragraph (collect consecutive non-empty lines)
     const paraLines: string[] = [];
-    while (i < lines.length && lines[i].trim() !== "" && !lines[i].startsWith("#") && !lines[i].startsWith("```") && !lines[i].startsWith("> ") && !/^[-*]\s/.test(lines[i].trim()) && !/^\d+\.\s/.test(lines[i].trim()) && !lines[i].startsWith("<VegaLite") && !(lines[i].includes("|") && lines[i].trim().startsWith("|")) && !/^---+$/.test(lines[i].trim())) {
+    while (i < lines.length && lines[i].trim() !== "" && !lines[i].trim().startsWith("#") && !lines[i].trim().startsWith("```") && !lines[i].trim().startsWith("> ") && !/^[-*]\s/.test(lines[i].trim()) && !/^\d+\.\s/.test(lines[i].trim()) && !lines[i].trim().startsWith("<VegaLite") && !(lines[i].includes("|") && lines[i].trim().startsWith("|")) && !/^---+$/.test(lines[i].trim())) {
       paraLines.push(lines[i]);
       i++;
     }
     if (paraLines.length) {
       blocks.push({ type: "p", content: paraLines.join(" ") });
+    } else {
+      // Fallback: If no condition matched and we didn't collect any paragraph lines, 
+      // forcefully increment `i` to avoid an infinite loop (e.g. unhandled '#### ' heading).
+      // We'll just treat the unhandled line as a paragraph block.
+      blocks.push({ type: "p", content: lines[i] });
+      i++;
     }
   }
 
