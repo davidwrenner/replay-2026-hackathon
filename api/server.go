@@ -1,12 +1,16 @@
 package api
 
 import (
+	"context"
 	"embed"
-	"encoding/base64"
 	"encoding/json"
 	"io"
 	"log"
 	"net/http"
+	"time"
+
+	"github.com/davidwrenner/replay-2026-hackathon/workflows"
+	"go.temporal.io/sdk/client"
 )
 
 //go:embed mock/*.json
@@ -14,6 +18,13 @@ var mockData embed.FS
 
 //go:embed report.mdx
 var reportMDX []byte
+
+// GetReportData returns the embedded report data.
+func GetReportData() []byte {
+	return reportMDX
+}
+
+const TaskQueue = "research-task-queue"
 
 var validSources = map[string]string{
 	"twitter":             "mock/twitter.json",
@@ -29,11 +40,15 @@ var validSources = map[string]string{
 }
 
 type Server struct {
-	addr string
+	addr           string
+	temporalClient client.Client
 }
 
-func NewServer(addr string) *Server {
-	return &Server{addr: addr}
+func NewServer(addr string, temporalClient client.Client) *Server {
+	return &Server{
+		addr:           addr,
+		temporalClient: temporalClient,
+	}
 }
 
 func (s *Server) Run() error {
@@ -94,10 +109,35 @@ func (s *Server) handleSources(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleResearch(w http.ResponseWriter, r *http.Request) {
-	encoded := base64.StdEncoding.EncodeToString(reportMDX)
+	ctx, cancel := context.WithTimeout(r.Context(), 30*time.Second)
+	defer cancel()
+
+	workflowOptions := client.StartWorkflowOptions{
+		TaskQueue: TaskQueue,
+	}
+
+	input := workflows.ResearchWorkflowInput{
+		Query: "market research",
+	}
+
+	we, err := s.temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflows.ResearchWorkflow, input)
+	if err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]string{"error": "failed to start workflow"})
+		return
+	}
+
+	var result workflows.ResearchWorkflowOutput
+	if err := we.Get(ctx, &result); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]string{"error": "workflow failed"})
+		return
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
-		"research": encoded,
+		"research": result.Research,
 	})
 }
