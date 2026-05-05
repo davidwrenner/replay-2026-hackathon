@@ -1,0 +1,143 @@
+# Market Intelligence Report
+
+**Generated:** May 5, 2026 | **Sources:** 10 data providers
+
+---
+
+## 1. Market Overview
+
+The S&P 500 reached new highs today, driven by strong jobs data and continued momentum in the technology sector. Key indices show mixed performance with the Nasdaq slightly retreating on profit-taking in AI names.
+
+### Index Performance
+
+```vega-lite
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Major Index Performance (%)",
+  "width": 400,
+  "height": 200,
+  "data": {
+    "values": [
+      {"index": "S&P 500", "change": 0.85, "color": "positive"},
+      {"index": "Dow Jones", "change": 0.39, "color": "positive"},
+      {"index": "Nasdaq", "change": -0.25, "color": "negative"},
+      {"index": "Russell 2000", "change": 0.59, "color": "positive"}
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "index", "type": "nominal", "axis": {"labelAngle": 0}, "title": null},
+    "y": {"field": "change", "type": "quantitative", "title": "Change (%)"},
+    "color": {
+      "field": "color",
+      "type": "nominal",
+      "scale": {"domain": ["positive", "negative"], "range": ["#22c55e", "#ef4444"]},
+      "legend": null
+    }
+  }
+}
+```
+
+### Top Movers
+
+| Ticker | Name | Change |
+|--------|------|--------|
+| SMCI | Super Micro Computer | +12.5% |
+| MSTR | MicroStrategy | +8.7% |
+| PLTR | Palantir | +6.2% |
+| PARA | Paramount Global | -8.9% |
+| SNAP | Snap Inc | -7.2% |
+
+---
+
+## 2. Social Sentiment Analysis
+
+Aggregated sentiment from Twitter, Reddit, and YouTube finance influencers reveals strong bullish positioning on NVIDIA, while Tesla sentiment remains divided.
+
+### Ticker Mentions & Sentiment
+
+```vega-lite
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Social Media Ticker Sentiment",
+  "width": 400,
+  "height": 250,
+  "data": {
+    "values": [
+      {"ticker": "NVDA", "mentions": 45230, "sentiment": 0.78, "source": "Twitter"},
+      {"ticker": "GME", "mentions": 32100, "sentiment": 0.65, "source": "Twitter"},
+      {"ticker": "TSLA", "mentions": 28900, "sentiment": 0.42, "source": "Twitter"},
+      {"ticker": "AAPL", "mentions": 21500, "sentiment": 0.71, "source": "Twitter"},
+      {"ticker": "AMD", "mentions": 18700, "sentiment": 0.68, "source": "Twitter"}
+    ]
+  },
+  "mark": "circle",
+  "encoding": {
+    "x": {"field": "mentions", "type": "quantitative", "title": "Mentions (24h)", "scale": {"zero": false}},
+    "y": {"field": "sentiment", "type": "quantitative", "title": "Sentiment Score", "scale": {"domain": [0, 1]}},
+    "size": {"field": "mentions", "type": "quantitative", "legend": null},
+    "color": {"field": "sentiment", "type": "quantitative", "scale": {"scheme": "redyellowgreen", "domain": [0, 1]}, "title": "Sentiment"},
+    "tooltip": [
+      {"field": "ticker", "type": "nominal"},
+      {"field": "mentions", "type": "quantitative"},
+      {"field": "sentiment", "type": "quantitative", "format": ".2f"}
+    ]
+  }
+}
+```
+
+### Reddit WallStreetBets Highlights
+
+- **Active Users:** 45,000
+- **Top Position Bias:** Long on GME, NVDA
+- **Biggest YOLO Win:** SMCI +450% ($10k → $55k)
+- **Biggest YOLO Loss:** PARA -92% ($75k → $6k)
+
+---
+
+## 3. Prediction Markets & Outlook
+
+Polymarket and Kalshi data suggest moderate confidence in Fed rate cuts and continued AI momentum.
+
+### Market Predictions
+
+```vega-lite
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Prediction Market Probabilities",
+  "width": 400,
+  "height": 200,
+  "data": {
+    "values": [
+      {"prediction": "BTC $100k by EOY", "probability": 72},
+      {"prediction": "Fed cuts in June", "probability": 65},
+      {"prediction": "NVDA hits $1000", "probability": 58},
+      {"prediction": "Tesla Robotaxi 2026", "probability": 34},
+      {"prediction": "US Recession 2026", "probability": 28}
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {"field": "prediction", "type": "nominal", "sort": "-x", "title": null},
+    "x": {"field": "probability", "type": "quantitative", "title": "Probability (%)", "scale": {"domain": [0, 100]}},
+    "color": {
+      "field": "probability",
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "legend": null
+    }
+  }
+}
+```
+
+### Key Upcoming Events
+
+| Date | Event | Importance |
+|------|-------|------------|
+| May 7 | FOMC Meeting Minutes | High |
+| May 10 | US CPI Data Release | High |
+| May 12 | OPEC+ Meeting | Medium |
+
+---
+
+*Data aggregated from: Twitter, Reddit, NYTimes, WSJ, LexisNexis, Refinitiv, Bloomberg, Dow Jones, YouTube, Polymarket*
