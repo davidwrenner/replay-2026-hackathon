@@ -34,7 +34,6 @@ make api
 ### 3. Start the Frontend
 
 ```shell
-make ui-install  # first time only
 make ui
 # Frontend on http://localhost:5173 (proxies /research → :8080)
 ```
@@ -45,7 +44,6 @@ make ui
 |---|---|
 | `make help` | Show all available commands |
 | `make api` | Start the Go API server on `:8080` |
-| `make ui-install` | Install frontend npm dependencies |
 | `make ui` | Start the React dev server on `:5173` |
 | `make test-api` | Test the API with a sample request |
 | `make research` | Get a decoded research report via curl |

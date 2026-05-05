@@ -4,8 +4,7 @@
 help:
 	@echo "Available commands:"
 	@echo "  make api        - Start the API server on :8080"
-	@echo "  make ui-install - Install frontend dependencies"
-	@echo "  make ui         - Start the frontend dev server on :5173"
+	@echo "  make ui         - Install (if needed) and start the frontend dev server on :5173"
 	@echo "  make test-api   - Test the API with a sample request"
 	@echo "  make research   - Get research report (decoded)"
 
@@ -13,13 +12,9 @@ help:
 api:
 	go run cmd/main.go
 
-# Install frontend dependencies
-ui-install:
-	cd ui && npm install
-
-# Start the frontend dev server (proxies /research to :8080)
+# Start the frontend dev server (installs dependencies if needed, proxies /research to :8080)
 ui:
-	cd ui && npm run dev
+	cd ui && if [ ! -d "node_modules" ]; then npm install; fi && npm run dev
 
 # Test the API
 test-api:
