@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/davidwrenner/replay-2026-hackathon/activities"
+	"github.com/davidwrenner/replay-2026-hackathon/pkg/workflowext"
 	"go.temporal.io/sdk/workflow"
 )
 
@@ -25,7 +26,7 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 	ctx = workflow.WithActivityOptions(ctx, ao)
 
 	var result activities.ResearchOutput
-	err := workflow.ExecuteActivity(ctx, "Research", activities.ResearchInput{Query: input.Query}).Get(ctx, &result)
+	err := workflowext.ExecuteOptional(ctx, "Research", new(activities.ResearchInput{Query: input.Query})).Get(ctx, &result)
 	if err != nil {
 		return nil, err
 	}
