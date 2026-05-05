@@ -25,8 +25,11 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 	}
 	ctx = workflow.WithActivityOptions(ctx, ao)
 
+	jobConfig := &activities.ResearchInput{Query: input.Query}
+	//jobConfig = nil
+
 	var result activities.ResearchOutput
-	err := workflowext.ExecuteOptional(ctx, "Research", new(activities.ResearchInput{Query: input.Query})).Get(ctx, &result)
+	err := workflowext.ExecuteOptional(ctx, "Research", jobConfig).Get(ctx, &result)
 	if err != nil {
 		return nil, err
 	}
