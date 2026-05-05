@@ -38,6 +38,7 @@ func (s *Server) Run() error {
 	mux.HandleFunc("GET /health", s.handleHealth)
 	mux.HandleFunc("GET /data/{name}", s.handleData)
 	mux.HandleFunc("GET /sources", s.handleSources)
+	mux.HandleFunc("POST /research", s.handleResearch)
 
 	log.Printf("API server starting on %s", s.addr)
 	return http.ListenAndServe(s.addr, mux)
