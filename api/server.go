@@ -108,16 +108,46 @@ func (s *Server) handleSources(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// ResearchRequest matches the UI's ResearchRequest type.
+type ResearchRequest struct {
+	DataSources   []DataSource `json:"dataSources"`
+	Prompt        string       `json:"prompt"`
+	RiskTolerance string       `json:"riskTolerance"`
+	MaxBudget     string       `json:"maxBudget"`
+}
+
+// DataSource represents a data source from the request.
+type DataSource struct {
+	Name string `json:"name"`
+}
+
 func (s *Server) handleResearch(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(r.Context(), 30*time.Second)
 	defer cancel()
 
-	workflowOptions := client.StartWorkflowOptions{
-		TaskQueue: TaskQueue,
+	var req ResearchRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{"error": "invalid request body"})
+		return
+	}
+
+	// Convert to workflow input
+	dataSources := make([]workflows.DataSource, len(req.DataSources))
+	for i, ds := range req.DataSources {
+		dataSources[i] = workflows.DataSource{Name: ds.Name}
 	}
 
 	input := workflows.ResearchWorkflowInput{
-		Query: "market research",
+		DataSources:   dataSources,
+		Prompt:        req.Prompt,
+		RiskTolerance: req.RiskTolerance,
+		MaxBudget:     req.MaxBudget,
+	}
+
+	workflowOptions := client.StartWorkflowOptions{
+		TaskQueue: TaskQueue,
 	}
 
 	we, err := s.temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflows.ResearchWorkflow, input)
@@ -132,7 +162,7 @@ func (s *Server) handleResearch(w http.ResponseWriter, r *http.Request) {
 	if err := we.Get(ctx, &result); err != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(map[string]string{"error": "workflow failed"})
+		json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
 		return
 	}
 
