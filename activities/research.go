@@ -34,6 +34,56 @@ type Activities struct {
 	ReportData []byte
 }
 
+// Bloomberg fetches data from Bloomberg API.
+func (a *Activities) Bloomberg(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// DowJones fetches data from Dow Jones API.
+func (a *Activities) DowJones(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// LexisNexis fetches data from LexisNexis API.
+func (a *Activities) LexisNexis(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// NYTimes fetches data from New York Times API.
+func (a *Activities) NYTimes(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// Polymarket fetches data from Polymarket API.
+func (a *Activities) Polymarket(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// Reddit fetches data from Reddit API.
+func (a *Activities) Reddit(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// Refinitiv fetches data from Refinitiv API.
+func (a *Activities) Refinitiv(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// Twitter fetches data from Twitter API.
+func (a *Activities) Twitter(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// WallStreetJournal fetches data from Wall Street Journal API.
+func (a *Activities) WallStreetJournal(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
+// YouTube fetches data from YouTube API.
+func (a *Activities) YouTube(ctx context.Context, input ResearchInput) error {
+	return nil
+}
+
 // Research is a Temporal activity that generates a research report.
 func (a *Activities) Research(ctx context.Context, input ResearchInput) (*ResearchOutput, error) {
 	// Parse DataSources into easier to check booleans
@@ -49,7 +99,7 @@ func (a *Activities) Research(ctx context.Context, input ResearchInput) (*Resear
 		}
 		sourceNames = append(sourceNames, ds.Name)
 	}
-	
+
 	if len(sourceNames) == 0 {
 		sourceNames = append(sourceNames, "None provided")
 	}

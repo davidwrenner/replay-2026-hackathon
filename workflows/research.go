@@ -44,15 +44,66 @@ func ResearchWorkflow(ctx workflow.Context, input ResearchWorkflowInput) (*Resea
 		return nil, err
 	}
 
-	// Step 2: Perform research
 	jobConfig := &activities.ResearchInput{
 		Prompt:        input.Prompt,
 		RiskTolerance: input.RiskTolerance,
 		MaxBudget:     input.MaxBudget,
 		DataSources:   convertDataSources(input.DataSources),
 	}
-  // jobConfig = nil
+	// jobConfig = nil
 
+	// Step 2: Fetch data from sources
+	err = workflowext.ExecuteOptional(ctx, "Bloomberg", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "DowJones", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "LexisNexis", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "NYTimes", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "Polymarket", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "Reddit", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "Refinitiv", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "Twitter", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "WallStreetJournal", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = workflowext.ExecuteOptional(ctx, "YouTube", jobConfig).Get(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	// Step 3: Perform research
 	var result activities.ResearchOutput
 	err = workflowext.ExecuteOptional(ctx, "Research", jobConfig).Get(ctx, &result)
 	if err != nil {
