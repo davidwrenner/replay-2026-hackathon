@@ -1,3 +1,6 @@
 .idea/
 .vscode/
 hack
+.vite
+*.log
+main
